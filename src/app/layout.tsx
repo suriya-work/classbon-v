@@ -54,7 +54,7 @@ export default function RootLayout({
 }) {
   return (
     <html dir='rtl' className={`dark ${figtree.variable} ${yekanbakh.variable}`}>
-      <body className=' min-h-screen grid grid-rows-[80px_1fr_auto] dark:bg-base-100 dark:text-base-content'>
+      <body className='min-h-screen grid grid-rows-[80px_1fr_auto] dark:bg-base-100 dark:text-base-content'>
         <Header />
         <main>
           {children}

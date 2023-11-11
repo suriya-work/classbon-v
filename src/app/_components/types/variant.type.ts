@@ -7,5 +7,5 @@
     | "info"
     |"success"
     |"warning"
-    |" error"
+    |"error"
  

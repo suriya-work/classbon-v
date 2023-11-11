@@ -5,5 +5,5 @@ export type ComponentBase =  {
     isDisable?: boolean;
     className?: string;
     variant?: Variant;
-    size: Size;
+    size?: Size;
 }

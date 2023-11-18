@@ -59,4 +59,9 @@ describe('Button Component', () => {
         rerender(<Button size="small">Click here</Button>);
         expect(screen.getByRole("button")).toHaveClass('btn-sm');
     });
+
+    test('sho render button', () => {
+        render(<Button variant="primary" isOutline={true} size="large" isDisable={true}>Click here</Button>)
+        screen.debug()
+    })
 })

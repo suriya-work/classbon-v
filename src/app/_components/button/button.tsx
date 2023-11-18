@@ -2,6 +2,7 @@ import { ButtonProps, ButtonShape } from "./button.types";
 import classNames from "classnames";
 import { Size } from '../types/size.type';
 import { Loading } from "../loading";
+
 const sizeClasses: Record<Size, string> = {
     tiny: 'btn_xs',
     small: 'btn-sm',

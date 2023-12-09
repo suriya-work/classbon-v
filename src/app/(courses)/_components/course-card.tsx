@@ -2,6 +2,7 @@ import Image from "next/image";
 import { CourseSummary } from "@/types/course-summary.interface";
 import Link from "next/link";
 import { Badge } from "@/app/_components/badge";
+import { IconArrowLeft, IconCheck } from "@/app/_components/icons/icons";
 
 export type CourseCardProps = CourseSummary & {};
 
@@ -40,7 +41,7 @@ export const CourseCard: React.FC<CourseCardProps> = ({
                 <p>{subTitle}</p>
                 <div className="flex items-center justify-between">
                     <Badge variant="warning">
-                        {duration}
+                        <IconCheck width={16} height={16} />   {duration}
                     </Badge>
 
                     {basePrice}
@@ -48,10 +49,11 @@ export const CourseCard: React.FC<CourseCardProps> = ({
             </div>
 
             <Link
-                className="card-footer animated-icon justify-center"
+                className="card-footer animated-icon justify-center animated-icon"
                 href={`/course/${slug}`}
             >
                 مشاهده جزئیات دوره
+                <IconArrowLeft fill="currentColor" />
             </Link>
         </div>
     )

@@ -23,6 +23,7 @@ export default async function Home() {
           <p>برای به روز بودن یادگرفتن نکته های تازه ضروریه</p>
         </div>
         <CourseCardList courses={newestCourses} />
+      
 
       </section>
     </>

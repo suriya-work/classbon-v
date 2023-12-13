@@ -7,6 +7,7 @@ import { CourseCardList } from "./(courses)/_components/course-card-list";
 import { homeFeatures } from '../data/home-features';
 import Feature from "./_components/feature/feature"; import { IconArrowLeftFill } from "./_components/icons/icons"
 import { BlogPostSummary } from "@/types/blog-post-summary.interface";
+import { BlogPostCardList } from "./(blog)/_components/blog-post-card-list";
 // this is getNewestCourses
 async function getNewestCourses(count: number): Promise<CourseSummary[]> {
   const res = await fetch(`https://api.classbon.com/api/courses/newest/${count}`, {
@@ -89,6 +90,28 @@ export default async function Home() {
           </div>
         </div>
       </section>
+      <section className="container py-20">
+                <div className="flex flex-col xl:flex-row gap-4 justify-center xl:justify-between items-center">
+                    <div className="text-center xl:text-right">
+                        <h2 className="text-2xl font-extrabold">
+                            تازه‌ترین مقاله‌های آموزشی
+                        </h2>
+                        <p className="mt-3 text-lg">
+                            به رایگان، به‌روزترین مقاله‌های دنیای تکنولوژی رو در
+                            اختیارت می‌ذاریم؛ چون پیشرفتت برامون مهمه!
+                        </p>
+                    </div>
+                    <Button
+                        variant="neutral"
+                        className="font-semibold"
+                        animatedIcon={true}
+                    >
+                        همه مقاله‌ها
+                        <IconArrowLeftFill fill="currentColor" />
+                    </Button>
+                </div>
+                <BlogPostCardList posts={newestBlogPosts} />
+            </section>
     </>
   )
 }

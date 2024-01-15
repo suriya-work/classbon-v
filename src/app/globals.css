@@ -23,11 +23,11 @@
     html {
         font-family: var(--font-yekanbakh);
     }
-
+    
     :lang(en) {
         font-family: var(--font-figtree);
     }
-
+    
 }
 
 .gradient {

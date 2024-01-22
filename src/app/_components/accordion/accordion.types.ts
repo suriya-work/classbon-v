@@ -1,5 +1,5 @@
-import { Accordion } from "@/types/accordion"
+import { Accordions } from "@/types/accordion"
 
 export type AccordionProps = {
-    data: Accordion[];
+    data: Accordions[];
 }

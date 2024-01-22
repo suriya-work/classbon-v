@@ -5,8 +5,15 @@
 
 @import '../tailwind/components/components.css';
 
-@layer base {
+html {
+    font-family: var(--font-yekanbakh);
+}
 
+:lang(en) {
+    font-family: var(--font-figtree);
+}
+
+@layer base {
     :root {
         --color-primary: theme("colors.primary");
         --color-secondary: theme("colors.secondary");
@@ -20,14 +27,7 @@
         --color-gradient-second: theme("colors.gradient-second");
     }
 
-    html {
-        font-family: var(--font-yekanbakh);
-    }
-    
-    :lang(en) {
-        font-family: var(--font-figtree);
-    }
-    
+
 }
 
 .gradient {

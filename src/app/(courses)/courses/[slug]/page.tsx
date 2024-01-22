@@ -1,41 +1,43 @@
 import { Progress } from "@/app/_components/progress";
 import { Rating } from "@/app/_components/rating/rating";
-import { API_URL } from "@/configs/global";
 import { CourseDetails } from "@/types/course-details.interface";
+import { API_URL } from "@/configs/global";
 import { CourseAside } from "./_components/course-aside";
 import { Tab } from "@/types/tab.type";
 import { Tabs } from "@/app/_components/tabs";
-import { Accordion as AccordionType } from "@/types/accordion";
+import { Accordions  } from "@/types/accordion";
 import { Accordion } from "@/app/_components/accordion";
 
-async function generateStaticParams() {
+export async function generateStaticParams() {
     const slugs = await fetch(`${API_URL}/courses/slugs`).then((res) =>
         res.json()
     );
+
     return (slugs as string[]).map((slug) => ({
-        slug: slug
-    }))
+        slug: slug,
+    }));
 }
 
-
-async function getCourse(slug: string): Promise<CourseDetails> {
+export async function getCourse(slug: string): Promise<CourseDetails> {
     const res = await fetch(`${API_URL}/courses/${slug}`);
-    return res.json()
+    return res.json();
 }
-
-
-
-export default async function CoursesDetails({ params }: { params: { slug: string } }) {
+export default async function CourseDetail({
+    params,
+}: {
+    params: { slug: string };
+}) {
     const { slug } = params;
     const course = await getCourse(slug);
 
-    const faqs : AccordionType[] = course.frequentlyAskedQuestions.map(
+    const faqs: Accordions[] = course.frequentlyAskedQuestions.map(
         faq => ({
             id: faq.id,
             title: faq.question,
-            content: faq.answer,
+            content: faq.answer
         })
     )
+
     const tabs: Tab[] = [
         {
             label: "مشخصات دوره",
@@ -47,9 +49,10 @@ export default async function CoursesDetails({ params }: { params: { slug: strin
         },
         {
             label: "سوالات متداول",
-            content: <Accordion data={faqs} />,
+            content: <Accordion data={faqs}/>,
         },
     ];
+
     return (
         <div className="container grid grid-cols-10 grid-rows-[1fr 1fr] gap-10 py-10">
             <div className="bg-primary pointer-events-none absolute right-0 aspect-square w-1/2   rounded-full opacity-10 blur-3xl"></div>
@@ -67,10 +70,9 @@ export default async function CoursesDetails({ params }: { params: { slug: strin
                 <CourseAside {...course} />
             </div>
             <div className="col-span-10 xl:col-span-6">
-                <Tabs tabs={tabs} />
+                <Tabs tabs={tabs}/>
             </div>
             <div className="col-span-10 xl:col-span-4 bg-warning"></div>
-
         </div>
-    )
+    );
 }

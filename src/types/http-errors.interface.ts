@@ -11,6 +11,15 @@ interface ValidationError extends Problem {}
 interface NotFoundError extends Problem {}
 interface UnhandledException extends Problem {}
 interface NetworkError extends Problem {}
+type ApiError =
+  | BadRequestError
+  | NetworkError
+  | NotFoundError
+  | UnauthorizedError
+  | UnhandledException
+  | ValidationError;
+
+
 
 export type {
   Problem,
@@ -20,4 +29,5 @@ export type {
   NotFoundError,
   UnhandledException,
   NetworkError,
+  ApiError
 };

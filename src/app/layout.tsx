@@ -51,7 +51,7 @@ const yekanbakh = localFont({
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode;
+    children: React.ReactNode;
 }) {
   return (
     <html

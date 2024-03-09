@@ -11,6 +11,7 @@ export const Accordion: React.FC<AccordionProps> = ({
   const toggleAccordion = (index: number) => {
     setActiveIndex(activeIndex === index ? null : index);
   };
+  console.log(data)
 
   return (
     <div className="accordion">

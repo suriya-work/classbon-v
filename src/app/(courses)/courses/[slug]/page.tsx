@@ -46,7 +46,7 @@ export default async function CourseDetail({
         },
         {
             label: "دیدگاه‌ها و پرسش",
-            content: <CourseComments />,
+             content: <CourseComments />,
         },
         {
             label: "سوالات متداول",

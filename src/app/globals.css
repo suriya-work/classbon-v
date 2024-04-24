@@ -12,6 +12,7 @@
   :lang(en) {
     font-family: var(--font-figtree);
   }
+
   :root {
     --color-primary: theme("colors.primary");
     --color-secondary: theme("colors.secondary");
@@ -31,14 +32,14 @@
 }
 
 .animated-icon {
-  & > * {
-     @apply transition-all;
+  &>* {
+    @apply transition-all;
   }
 
   &:hover {
     @apply text-white;
 
-    & > * {
+    &>* {
       @apply -translate-x-2;
     }
   }

@@ -32,7 +32,7 @@
 
 .animated-icon {
   & > * {
-    @apply transition-all;
+     @apply transition-all;
   }
 
   &:hover {

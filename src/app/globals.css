@@ -32,14 +32,14 @@
 }
 
 .animated-icon {
-  &>* {
+  & > * {
     @apply transition-all;
   }
 
   &:hover {
     @apply text-white;
 
-    &>* {
+    & > * {
       @apply -translate-x-2;
     }
   }

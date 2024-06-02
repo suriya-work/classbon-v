@@ -3,11 +3,11 @@
 @import "tailwindcss/utilities";
 
 @import "../tailwind/components.css";
-
+html {
+  font-family: var("--font-yakanbakh");
+}
 @layer base {
-  html {
-    font-family: var(--font-yekanbakh);
-  }
+ 
 
   :lang(en) {
     font-family: var(--font-figtree);

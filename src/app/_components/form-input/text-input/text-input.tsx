@@ -23,7 +23,7 @@ const TextInput = <TFormValues extends FieldValues>({
             {
                 hasError && (
                     <p className="mt-1 text-sm text-error">
-                        {error.message}
+                         {error.message}
                     </p>
                 )
             }

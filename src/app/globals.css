@@ -2,18 +2,10 @@
 @import "tailwindcss/components";
 
 @import "../tailwind/components.css";
-
 @import "tailwindcss/utilities";
 
+
 @layer base {
-  html {
-    font-family: var("--font-yakanbakh");
-  }
-
-  :lang(en) {
-    font-family: var(--font-figtree);
-  }
-
   :root {
     --color-primary: theme("colors.primary");
     --color-secondary: theme("colors.secondary");
@@ -25,6 +17,13 @@
     --color-error: theme("colors.error");
     --color-gradient-first: theme("colors.gradient-first");
     --color-gradient-second: theme("colors.gradient-second");
+  }
+  html {
+    font-family: var("--font-yekanbakh");
+  }
+
+  :lang(en) {
+    font-family: var(--font-figtree);
   }
 }
 

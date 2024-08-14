@@ -1,6 +1,6 @@
 import "./globals.css";
 import { Figtree } from "next/font/google";
-import localFont from "next/font/local";
+import localfont from "next/font/local";
 import { Header } from "./_components/header";
 import { Footer } from "./_components/footer";
 import QueryProvider from "@/providers/react-query-provider";
@@ -13,7 +13,7 @@ const figtree = Figtree({
   variable: "--font-figtree",
 });
 
-const yekanbakh = localFont({
+const yekanbakh = localfont({
   src: [
     {
       path: "../../public/fonts/YekanBakh/YekanBakh-Thin.woff2",
@@ -46,13 +46,12 @@ const yekanbakh = localFont({
       style: "normal",
     },
   ],
-  variable: "--font-yakanbakh",
+  variable: "--font-yekanbakh",
 });
-
 export default function RootLayout({
   children,
 }: {
-    children: React.ReactNode;
+  children: React.ReactNode;
 }) {
   return (
     <html
@@ -60,7 +59,7 @@ export default function RootLayout({
       className={`${yekanbakh.variable} ${figtree.variable} dark`}
     >
       <body className="min-h-screen grid grid-rows-[80px_1fr_auto] dark:bg-base-100 dark:text-base-content">
-      <NextTopLoader showSpinner={false} color="var( --color-primary)"/>
+        <NextTopLoader showSpinner={false} color="var( --color-primary)" />
         <QueryProvider>
           <Header />
           <main>{children}</main>

@@ -2,143 +2,176 @@ export function generateID(): string {
   return Math.random().toString(36).substring(2 , 9) + '' + new Date() .getTime();
 }
 
-// import React from 'react';
+//
 
-// interface ModalProps {
-//   isOpen: boolean;
-//   onClose: () => void;
-//   children: React.ReactNode;
-//   size?: 'small' | 'medium' | 'large';
+// export const Breadcrumb = ({
+//   items = [
+//     dummy.parent,
+//     { name: dummy.name, id: dummy.id, parentId: dummy.parentId },
+//     ...dummy.subCategories,
+//   ],
+// }: {
+//   items?: { id: number; name: string; parentId: number }[];
+// }) => {
+//   return (
+//     <div className="flex gap-1 text-sm font-medium text-primary">
+//       {items?.map((item, idx) => (
+//         <>
+//           <span>{item.name}</span>
+//           {items.length !== idx + 1 ? <span>/</span> : null}
+//         </>
+//       ))}
+//     </div>
+//   );
+// };
+
+// export interface CategoryBreadCrumbModel {
+//   id: number;
+//   name: string;
+//   parentId: number;
+//   parent: {
+//     id: number;
+//     name: string;
+//     parentId: number;
+//   };
+//   subCategories: {
+//     id: number;
+//     name: string;
+//     parentId: number;
+//   }[];
 // }
 
-// const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children, size = 'medium' }) => {
-//   if (!isOpen) return null;
+// const dummy: CategoryBreadCrumbModel = {
+//   id: 1,
+//   name: "گوشی موبایل",
+//   parent: {
+//     id: 2,
+//     name: "موبایل و کالای دیجیتال",
+//     parentId: 3,
+//   },
+//   parentId: 0,
+//   subCategories: [
+//     {
+//       id: 5,
+//       name: "اپل Apple",
+//       parentId: 9,
+//     },
+//   ],
+// };
 
-//   const sizeClass = {
-//     small: 'w-1/4',
-//     medium: 'w-1/2',
-//     large: 'w-3/4',
+
+// ایجاد فرم جستجو
+
+// import { useState } from 'react';
+
+// function SearchForm({ onSearch }) {
+//   const [query, setQuery] = useState('');
+
+//   const handleSubmit = (e) => {
+//     e.preventDefault();
+//     onSearch(query);
 //   };
 
 //   return (
-//     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
-//       <div className={`bg-white rounded-lg p-6 ${sizeClass[size]}`}>
-//         <button
-//           className="absolute top-2 right-2 text-gray-500 hover:text-gray-700"
-//           onClick={onClose}
-//         >
-//           ×
-//         </button>
-//         {children}
-//       </div>
-//     </div>
+//     <form onSubmit={handleSubmit} className="search-form">
+//       <input
+//         type="text"
+//         value={query}
+//         onChange={(e) => setQuery(e.target.value)}
+//         placeholder="محصول مورد نظر را جستجو کنید"
+//         className="search-input"
+//       />
+//       <button type="submit" className="search-button">جستجو</button>
+//     </form>
 //   );
-// };
+// }
 
-// export default Modal;
+// export default SearchForm;
 
-// use modal components
+
+
+//  منطق جستجو در کامپوننت والد
 
 // import { useState } from 'react';
-// import Modal from '../components/Modal';
+// import SearchForm from './SearchForm';
+// import ProductList from './ProductList';
 
-// const HomePage = () => {
-//   const [isModalOpen, setModalOpen] = useState(false);
+// const mockProducts = [
+//   { id: 1, name: "تلفن همراه ۱" },
+//   { id: 2, name: "تلفن همراه ۲" },
+//   { id: 3, name: "لپتاپ ۱" },
+//   // محصولات بیشتر...
+// ];
 
-//   return (
-//     <div className="flex flex-col items-center justify-center min-h-screen py-2">
-//       <button
-//         className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
-//         onClick={() => setModalOpen(true)}
-//       >
-//         Open Modal
-//       </button>
+// function SearchPage() {
+//   const [results, setResults] = useState([]);
+//   const [query, setQuery] = useState('');
+//   const [error, setError] = useState(null);
+//   const [loading, setLoading] = useState(false);
 
-//       <Modal isOpen={isModalOpen} onClose={() => setModalOpen(false)} size="medium">
-//         <h2 className="text-2xl font-bold">This is a Modal</h2>
-//         <p className="mt-4">You can pass any content as children.</p>
-//       </Modal>
-//     </div>
-//   );
-// };
+//   const handleSearch = async (searchQuery) => {
+//     setQuery(searchQuery);
+//     setError(null);
+//     setLoading(true);
 
-// export default HomePage;
+//     try {
+//       if (searchQuery.trim() === '') {
+//         setResults([]);
+//         return;
+//       }
 
+//       const searchResults = mockProducts.filter(product => 
+//         product.name.toLowerCase().includes(searchQuery.toLowerCase())
+//       );
 
-// react-multi-carousel
+//       setResults(searchResults);
+//     } catch (e) {
+//       setError('خطایی در فرآیند جستجو رخ داده است.');
+//       console.error(e);
+//     } finally {
+//       setLoading(false);
+//     }
+//   };
 
-// import React from "react";
-// import Carousel from "react-multi-carousel";
-// import "react-multi-carousel/lib/styles.css";
-// import "./styles.css";
-
-// const Slider = ({ responsiveSettings, autoPlay = true, swipeable = true, draggable = true, showDots = true, infinite = true, partialVisible = false, children }) => {
-//   return (
-//     <div className="parent">
-//       <Carousel
-//         responsive={responsiveSettings}
-//         autoPlay={autoPlay}
-//         swipeable={swipeable}
-//         draggable={draggable}
-//         showDots={showDots}
-//         infinite={infinite}
-//         partialVisible={partialVisible}
-//         dotListClass="custom-dot-list-style"
-//       >
-//         {children}
-//       </Carousel>
-//     </div>
-//   );
-// };
-
-// export default Slider;
-
-
-// use componens
-
-// import React from "react";
-// import Slider from "./Slider";
-
-// const responsive = {
-//   desktop: {
-//     breakpoint: { max: 3000, min: 1024 },
-//     items: 4,
-//     slidesToSlide: 4 // optional, default to 1.
-//   },
-//   tablet: {
-//     breakpoint: { max: 1024, min: 768 },
-//     items: 3,
-//     slidesToSlide: 3 // optional, default to 1.
-//   },
-//   mobile: {
-//     breakpoint: { max: 767, min: 464 },
-//     items: 2,
-//     slidesToSlide: 1 // optional, default to 1.
-//   }
-// };
-
-// const App = () => {
 //   return (
 //     <div>
-//       <h1>Movie Carousel</h1>
-//       <Slider responsiveSettings={responsive}>
-//         {/* هر محتوایی که اینجا قرار دهید به عنوان یک اسلاید در کاروسل نمایش داده می‌شود */}
-//         <div className="slider">
-//           <img src="https://i2.wp.com/www.geeksaresexy.net/wp-content/uploads/2020/04/movie1.jpg?resize=600%2C892&ssl=1" alt="movie1" />
-//         </div>
-//         <div className="slider">
-//           <img src="https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/best-kids-movies-2020-call-of-the-wild-1579042974.jpg?crop=0.9760858955588091xw:1xh;center,top&resize=480:*" alt="movie2" />
-//         </div>
-//         <div className="slider">
-//           <img src="https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/best-movies-for-kids-2020-sonic-the-hedgehog-1571173983.jpg?crop=0.9871668311944719xw:1xh;center,top&resize=480:*" alt="movie3" />
-//         </div>
-//         <div className="slider">
-//           <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQS82ET2bq9oTNwPOL8gqyoLoLfeqJJJWJmKQ&usqp=CAU" alt="movie4" />
-//         </div>
-//       </Slider>
+//       <SearchForm onSearch={handleSearch} />
+//       {loading && <div>لطفاً صبر کنید...</div>}
+//       {error && <div className="error-message">{error}</div>}
+//       <ProductList products={results} query={query} />
 //     </div>
 //   );
-// };
+// }
 
-// export default App;
+// export default SearchPage;
 
+
+// . نمایش نتایج و هایلایت کلمه جستجو
+
+// import React from 'react';
+
+// function highlightQuery(text, query) {
+//   if (!query) return text;
+//   const parts = text.split(new RegExp(`(${query})`, 'gi'));
+//   return parts.map((part, index) => 
+//     part.toLowerCase() === query.toLowerCase() ? <span key={index} className="highlight">{part}</span> : part
+//   );
+// }
+
+// function ProductList({ products, query }) {
+//   if (products.length === 0) {
+//     return <div className="no-results">هیچ محصولی یافت نشد</div>;
+//   }
+
+//   return (
+//     <div className="product-list">
+//       {products.map(product => (
+//         <div key={product.id} className="product-item">
+//           {highlightQuery(product.name, query)}
+//         </div>
+//       ))}
+//     </div>
+//   );
+// }
+
+// export default ProductList;

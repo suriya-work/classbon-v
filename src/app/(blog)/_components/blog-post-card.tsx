@@ -5,8 +5,6 @@ import Image from "next/image";
 import Link from "next/link";
 
 type BlogPostCardProps = BlogPostSummary & {}
-
-
 export const BlogPostCard: React.FC<BlogPostCardProps> = ({
     title,
     thumbnailUrl,
